@@ -8,6 +8,11 @@ snake[0] = {//tamanho da cobra
 }
 let direction = "right";//direcção
 
+let food = {//gera um numero aleatório (random 0.0 a 1.0 e floor deixa o numero inteiro)
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 function criarBG(){
     context.fillStyle = "lightgreen";
     context.fillRect(0, 0, 16 * box, 16 * box); // quantidade de box ao quadrao
@@ -17,6 +22,12 @@ function criarCobrinha(){
         context.fillStyle = "green";//cor na cobrinha
         context.fillRect(snake[i].x, snake[i].y, box, box); //tamanho da cobra e o tamanho do box
     }
+}
+
+//criando a comida
+function drawFood(){
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 //captura os cliques no teclado e chama a função update
@@ -38,6 +49,7 @@ function iniciarJogo(){
 
     criarBG();
     criarCobrinha();
+    drawFood();
 
     //posicionamento da cobrinha
     let snakeX = snake[0].x; 
